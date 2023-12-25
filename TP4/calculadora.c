@@ -36,7 +36,7 @@ struct simbolo_tabla* agregar_simbolo(char* nombre, int tipo){
 struct reg_funcion
 {
   char *nombre;
-  double (*func)();
+  double (*func)(double);
 };
 
 struct reg_funcion funciones_aritmeticas[]
