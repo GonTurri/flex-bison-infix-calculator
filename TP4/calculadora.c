@@ -73,6 +73,7 @@ int declarar(struct simbolo_tabla ** sem_reg){
         return 1;
     }
     *sem_reg = agregar_simbolo(aux->lexema,VAR);
+    liberarMiTad(aux);
     return 0;
 }
 
@@ -88,7 +89,7 @@ int verificar_id(char *nombre){
 
 void llenar_registro(struct simbolo_tabla ** sem_reg,char* nombre){
     struct simbolo_tabla * aux;
-    *sem_reg = malloc(sizeof(sem_reg));
+    *sem_reg = malloc(sizeof(struct simbolo_tabla));
     aux = *sem_reg;
     aux->lexema = strdup(nombre);
     aux->tipo = VAR;
@@ -106,12 +107,17 @@ void inicializar_tabla(void){
     }
 }
 
+void liberarMiTad(struct simbolo_tabla *elem){
+    free(elem->lexema);
+    free(elem);
+}
+
 void liberarMemoriaTabla(void){
     struct simbolo_tabla * aux;
     while(tabla_de_simbolos){
         aux = tabla_de_simbolos;
         tabla_de_simbolos = tabla_de_simbolos->sig;
-        free(aux);
+        liberarMiTad(aux);
     }
     tabla_de_simbolos = 0;
 }

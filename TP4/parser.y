@@ -57,14 +57,14 @@ expresion:  expresion '+' expresion                 {$$ = $1 + $3;}|
             expresion '/' expresion                 {$$ = $1 / $3;}|
             expresion '^' expresion                 {$$ = pow ($1,$3);}|
             '-' expresion %prec NEG                 {$$ = -$2;}| 
-            IDENTIFICADOR                           {if(verificar_id($1->lexema)) YYERROR; else $$ = $1->valor.nro;}|
-            IDENTIFICADOR '=' expresion             {if(verificar_id($1->lexema)) YYERROR; else $$ = $1->valor.nro = $3;} | 
+            IDENTIFICADOR                           {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} else $$ = $1->valor.nro;}|
+            IDENTIFICADOR '=' expresion             {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} else $$ = $1->valor.nro = $3;} | 
             NUMERO                                  {$$ = $1;} |
             '(' expresion ')'                       { $$ = $2;} | 
-            IDENTIFICADOR "+=" expresion            {if(verificar_id($1->lexema)) YYERROR; else $$ = $1->valor.nro += $3;} |
-            IDENTIFICADOR "-=" expresion            {if(verificar_id($1->lexema)) YYERROR; else $$ = $1->valor.nro -= $3;} |
-            IDENTIFICADOR "*=" expresion            {if(verificar_id($1->lexema)) YYERROR; $$ = $1->valor.nro *= $3;} |
-            IDENTIFICADOR "/=" expresion            {if(verificar_id($1->lexema)) YYERROR; else $$ = $1->valor.nro /= $3;} |
+            IDENTIFICADOR "+=" expresion            {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} else $$ = $1->valor.nro += $3;} |
+            IDENTIFICADOR "-=" expresion            {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} else $$ = $1->valor.nro -= $3;} |
+            IDENTIFICADOR "*=" expresion            {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} $$ = $1->valor.nro *= $3;} |
+            IDENTIFICADOR "/=" expresion            {if(verificar_id($1->lexema)) {liberarMiTad($1); YYERROR;} else $$ = $1->valor.nro /= $3;} |
             FUNC '(' expresion ')'                  {$$ = $1->valor.func($3);} ;
 %%
 

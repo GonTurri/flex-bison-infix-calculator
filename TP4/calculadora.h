@@ -27,6 +27,7 @@ int verificar_id(char *nombre);
 void llenar_registro(struct simbolo_tabla ** sem_reg,char* nombre);
 void inicializar_tabla(void);
 void liberarMemoriaTabla(void);
+void liberarMiTad(struct simbolo_tabla * elem);
 void salir (void);
 
 int fue_declarado(char * nombre);
