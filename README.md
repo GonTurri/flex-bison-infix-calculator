@@ -1,23 +1,3 @@
-# SSL TPs Grupales
+# TP 4: FLEX Y BISON
 
-## Comision K2002 - Martes Mañana - Grupo 1
-
-## Integrantes:
-
-Uriel Grifman
-
-Gonzalo Ivo Turri
-
-Valentina Valmadre Amoia
-
-Gerónimo Bosco
-
-Facundo Slaibe
-
-Gianfranco Lema De Filippo
-
-María Sofía Rabey Fischer
-
-Juan Ignacio del Puerto
-
-Santiago Ale Marino
+## Analizador semántico para una calculadora utilizando las herramientas Flex y Bison.
